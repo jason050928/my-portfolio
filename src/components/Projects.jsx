@@ -170,23 +170,17 @@ function Projects() {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "repeat(2, 1fr)" },
-            gap: { xs: 3, md: 4 },
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              lg: "repeat(3, 1fr)",
+            },
+            gap: { xs: 3, md: 3.5 },
           }}
         >
           {projects.map((project, index) => {
-            const isLastOdd =
-              projects.length % 2 === 1 && index === projects.length - 1;
-
             return (
-              <Reveal
-                key={project.url}
-                delay={index * 80}
-                sx={{
-                  height: "100%",
-                  gridColumn: isLastOdd ? { md: "1 / -1" } : "auto",
-                }}
-              >
+              <Reveal key={project.url} delay={index * 80} sx={{ height: "100%" }}>
                 <Card
                   className="project-card"
                   component="a"

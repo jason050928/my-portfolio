@@ -53,25 +53,38 @@ function App() {
 
   const colorMode = useMemo(() => ({ mode, toggle }), [mode, toggle]);
   const theme = useMemo(() => getTheme(mode), [mode]);
+  // Nav, hero, contact and footer stay dark in both modes; the toggle only
+  // flips the body sections between them.
+  const ink = useMemo(() => (mode === "dark" ? theme : getTheme("dark")), [mode, theme]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <Navbar />
+        <ThemeProvider theme={ink}>
+          <Navbar />
+        </ThemeProvider>
 
         <main>
-          <Hero />
+          <ThemeProvider theme={ink}>
+            <Hero />
+          </ThemeProvider>
+
           <About />
           <Skills />
           <Projects />
           <Experience />
           <Education />
-          <Contact />
+
+          <ThemeProvider theme={ink}>
+            <Contact />
+          </ThemeProvider>
         </main>
 
-        <Footer />
+        <ThemeProvider theme={ink}>
+          <Footer />
+        </ThemeProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

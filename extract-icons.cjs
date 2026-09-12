@@ -6,32 +6,24 @@ const fs = require("fs");
 const wanted = {
   JavaScript: ["siJavascript"],
   TypeScript: ["siTypescript"],
-  Python: ["siPython"],
-  PHP: ["siPhp"],
-  Java: ["siOpenjdk"],
-  HTML: ["siHtml5"],
-  CSS: ["siCss"],
+  React: ["siReact"],
+  "Next.js": ["siNextdotjs"],
   "Node.js": ["siNodedotjs"],
-  Claude: ["siClaude"],
-  Gemini: ["siGooglegemini"],
-  n8n: ["siN8n"],
-  "Make.com": ["siMake"],
+  Python: ["siPython"],
+  Django: ["siDjango"],
+  GraphQL: ["siGraphql"],
   PostgreSQL: ["siPostgresql"],
   MySQL: ["siMysql"],
   MongoDB: ["siMongodb"],
-  Redis: ["siRedis"],
-  Docker: ["siDocker"],
-  "GitHub Actions": ["siGithubactions"],
-  Jenkins: ["siJenkins"],
-  Git: ["siGit"],
-  React: ["siReact"],
 };
 
 // Some official colours are unusable on a dark surface, or belong to a
 // different product than the label we show.
 const colorOverrides = {
-  // OpenJDK's mark is pure black; use the colour people read as "Java".
-  Java: "#E76F00",
+  // Next.js's mark is pure black; a neutral slate reads on both themes.
+  "Next.js": "#6B7A90",
+  // Django's official green is too dark for the dark theme.
+  Django: "#2BA977",
 };
 
 const entries = [];

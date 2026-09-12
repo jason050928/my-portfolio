@@ -21,7 +21,13 @@ function Footer() {
   return (
     <Box
       component="footer"
-      sx={{ borderTop: "1px solid", borderColor: "divider", py: { xs: 5, md: 6 } }}
+      sx={{
+        borderTop: "1px solid",
+        borderColor: "divider",
+        py: { xs: 5, md: 6 },
+        bgcolor: "background.default",
+        color: "text.primary",
+      }}
     >
       <Container maxWidth="lg">
         <Box

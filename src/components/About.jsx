@@ -15,7 +15,7 @@ import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import { highlights, profile, services, stats } from "../data/profile";
+import { credentials, highlights, profile, services } from "../data/profile";
 
 const serviceIcons = {
   code: CodeRoundedIcon,
@@ -90,26 +90,24 @@ function About() {
                 gap: 2.5,
               }}
             >
-              {stats.map((stat) => (
-                <Card key={stat.label} sx={{ height: "100%" }}>
+              {credentials.map((item) => (
+                <Card key={item.label} sx={{ height: "100%" }}>
                   <CardContent sx={{ p: 3 }}>
                     <Typography
                       sx={{
-                        fontWeight: 800,
                         fontSize: 26,
-                        lineHeight: 1.2,
+                        fontWeight: 800,
+                        lineHeight: 1.1,
+                        letterSpacing: "-0.02em",
+                        color: "primary.main",
                         mb: 0.75,
-                        background: theme.custom.accentGradient,
-                        WebkitBackgroundClip: "text",
-                        backgroundClip: "text",
-                        color: "transparent",
                       }}
                     >
-                      {stat.value}
+                      {item.value}
                     </Typography>
 
                     <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                      {stat.label}
+                      {item.label}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -133,8 +131,8 @@ function About() {
               variant="body1"
               sx={{ color: "text.secondary", maxWidth: 640 }}
             >
-              Four things I do end to end — scoped, built, shipped and
-              supported — for SaaS teams that need a senior engineer, not a
+              Three things I do end to end — scoped, built, shipped and
+              supported — for teams that need a senior engineer, not a
               handoff.
             </Typography>
           </Box>
@@ -145,8 +143,7 @@ function About() {
             display: "grid",
             gridTemplateColumns: {
               xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
+              md: "repeat(3, 1fr)",
             },
             gap: 3,
           }}

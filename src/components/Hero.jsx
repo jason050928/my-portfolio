@@ -10,10 +10,9 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 
 import Reveal from "./Reveal";
-import { profile, stats } from "../data/profile";
+import { credentials, profile } from "../data/profile";
 
 const socialIcons = {
   github: GitHubIcon,
@@ -23,12 +22,68 @@ const socialIcons = {
 const codeLines = [
   { indent: 0, text: "const engineer = {" },
   { indent: 1, text: 'name: "Jason Gundayao",', accent: true },
-  { indent: 1, text: 'builds: ["SaaS", "AI features", "APIs"],', accent: true },
+  { indent: 1, text: 'builds: ["SaaS", "APIs", "AI features"],', accent: true },
   { indent: 1, text: "years: 15," },
   { indent: 1, text: "remote: true," },
   { indent: 1, text: "shipsOnFriday: false," },
   { indent: 0, text: "};" },
 ];
+
+/** Dark backdrop: the photo from profile.heroImage when set, else a gradient. */
+function Backdrop({ image }) {
+  const theme = useTheme();
+
+  return (
+    <Box aria-hidden sx={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      {image ? (
+        <Box
+          component="img"
+          src={image}
+          alt=""
+          sx={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center right",
+            display: "block",
+          }}
+        />
+      ) : null}
+
+      {/* Left-heavy scrim so the copy always sits on solid dark. */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background: image
+            ? `linear-gradient(90deg, ${theme.palette.background.default} 30%, ${alpha(
+                theme.palette.background.default,
+                0.55,
+              )} 70%, ${alpha(theme.palette.background.default, 0.3)} 100%)`
+            : `radial-gradient(70% 80% at 80% 20%, ${alpha(
+                theme.palette.primary.main,
+                0.22,
+              )}, transparent 60%), linear-gradient(180deg, #0d1424 0%, ${
+                theme.palette.background.default
+              } 100%)`,
+        }}
+      />
+
+      {/* Faint dot grid, fading toward the copy. */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `radial-gradient(${alpha("#ffffff", 0.14)} 1px, transparent 1px)`,
+          backgroundSize: "26px 26px",
+          maskImage: "linear-gradient(90deg, transparent 20%, black 100%)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent 20%, black 100%)",
+          opacity: 0.5,
+        }}
+      />
+    </Box>
+  );
+}
 
 function Hero() {
   const theme = useTheme();
@@ -41,89 +96,44 @@ function Hero() {
         position: "relative",
         display: "flex",
         alignItems: "center",
-        minHeight: { xs: "auto", md: "100vh" },
-        pt: { xs: 14, md: 12 },
-        pb: { xs: 10, md: 12 },
+        minHeight: { xs: "auto", md: "92vh" },
+        pt: { xs: 14, md: 16 },
+        pb: { xs: 8, md: 10 },
         overflow: "hidden",
+        bgcolor: "background.default",
+        color: "text.primary",
       }}
     >
-      {/* Ambient glow behind the copy. */}
-      <Box
-        aria-hidden
-        sx={{
-          position: "absolute",
-          inset: 0,
-          background: theme.custom.glow,
-          pointerEvents: "none",
-        }}
-      />
+      <Backdrop image={profile.heroImage} />
 
       <Container maxWidth="lg" sx={{ position: "relative" }}>
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" },
-            gap: { xs: 6, md: 8 },
+            gridTemplateColumns: { xs: "1fr", md: "1.2fr 0.8fr" },
+            gap: { xs: 6, md: 7 },
             alignItems: "center",
           }}
         >
           <Box>
             <Reveal>
-              <Stack
-                direction="row"
-                spacing={1.5}
-                sx={{ alignItems: "center", mb: 2.5 }}
-              >
-                <Box
-                  sx={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: "50%",
-                    bgcolor: "success.main",
-                    boxShadow: (t) => `0 0 0 4px ${alpha(t.palette.success.main, 0.18)}`,
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontFamily: theme.custom.mono,
-                    fontSize: 13,
-                    color: "text.secondary",
-                  }}
-                >
-                  {profile.availability}
-                </Typography>
-              </Stack>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <Typography variant="overline" sx={{ color: "primary.main" }}>
-                {profile.kicker}
-              </Typography>
-            </Reveal>
-
-            <Reveal delay={140}>
-              <Typography variant="h1" sx={{ mt: 1.5, mb: 1.5 }}>
-                {profile.name}
-              </Typography>
-            </Reveal>
-
-            <Reveal delay={200}>
               <Typography
-                variant="h2"
-                sx={{
-                  mb: 3,
-                  background: theme.custom.accentGradient,
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                  display: "inline-block",
-                }}
+                variant="overline"
+                component="p"
+                sx={{ color: "primary.light", mb: 2 }}
               >
                 {profile.role}
               </Typography>
             </Reveal>
 
-            <Reveal delay={260}>
+            <Reveal delay={80}>
+              <Typography variant="h1" sx={{ mb: 2.5, maxWidth: 640 }}>
+                {/* Non-breaking hyphens so "AI-powered" never splits across lines. */}
+                {profile.headline.replace(/-/g, "‑")}
+              </Typography>
+            </Reveal>
+
+            <Reveal delay={160}>
               <Typography
                 variant="subtitle1"
                 sx={{ color: "text.secondary", maxWidth: 560, mb: 4 }}
@@ -132,8 +142,8 @@ function Hero() {
               </Typography>
             </Reveal>
 
-            <Reveal delay={320}>
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mb: 4 }}>
+            <Reveal delay={240}>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mb: 5 }}>
                 <Button
                   href="#contact"
                   variant="contained"
@@ -147,15 +157,68 @@ function Hero() {
                   href="#projects"
                   variant="outlined"
                   size="large"
-                  sx={{ borderColor: "divider", color: "text.primary" }}
+                  sx={{
+                    borderColor: alpha("#ffffff", 0.25),
+                    color: "text.primary",
+                    "&:hover": {
+                      borderColor: "#ffffff",
+                      bgcolor: alpha("#ffffff", 0.06),
+                    },
+                  }}
                 >
-                  See case studies
+                  View my work
                 </Button>
               </Stack>
             </Reveal>
 
+            <Reveal delay={320}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  columnGap: { xs: 3.5, sm: 4 },
+                  rowGap: 2.5,
+                  mb: 5,
+                }}
+              >
+                {credentials.map((item) => (
+                  <Box key={item.label} sx={{ whiteSpace: "nowrap" }}>
+                    <Typography
+                      sx={{
+                        fontSize: { xs: 22, sm: 24 },
+                        fontWeight: 800,
+                        lineHeight: 1.1,
+                        letterSpacing: "-0.02em",
+                        mb: 0.5,
+                      }}
+                    >
+                      {item.value}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                      {item.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            </Reveal>
+
             <Reveal delay={380}>
-              <Stack direction="row" spacing={1.5}>
+              <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
+                <Stack direction="row" spacing={1} sx={{ alignItems: "center", mr: 1 }}>
+                  <Box
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      bgcolor: "success.main",
+                      boxShadow: `0 0 0 4px ${alpha(theme.palette.success.main, 0.2)}`,
+                    }}
+                  />
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    {profile.availability}
+                  </Typography>
+                </Stack>
+
                 {profile.socials.map((social) => {
                   const Icon = socialIcons[social.icon];
 
@@ -166,11 +229,12 @@ function Hero() {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={social.label}
+                      size="small"
                       sx={{
                         border: "1px solid",
                         borderColor: "divider",
                         color: "text.secondary",
-                        "&:hover": { color: "primary.main", borderColor: "primary.main" },
+                        "&:hover": { color: "#ffffff", borderColor: "primary.main" },
                       }}
                     >
                       {Icon ? <Icon fontSize="small" /> : null}
@@ -181,11 +245,12 @@ function Hero() {
                 <IconButton
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
+                  size="small"
                   sx={{
                     border: "1px solid",
                     borderColor: "divider",
                     color: "text.secondary",
-                    "&:hover": { color: "primary.main", borderColor: "primary.main" },
+                    "&:hover": { color: "#ffffff", borderColor: "primary.main" },
                   }}
                 >
                   <MailOutlineRoundedIcon fontSize="small" />
@@ -194,15 +259,15 @@ function Hero() {
             </Reveal>
           </Box>
 
-          <Reveal delay={220} direction="right">
+          <Reveal delay={200} direction="right">
             <Box
               sx={{
-                borderRadius: 4,
+                borderRadius: 3,
                 border: "1px solid",
-                borderColor: "divider",
-                bgcolor: (t) => alpha(t.palette.background.paper, 0.72),
-                backdropFilter: "blur(12px)",
-                boxShadow: theme.custom.cardHoverShadow,
+                borderColor: alpha("#ffffff", 0.12),
+                bgcolor: alpha("#0f172a", 0.85),
+                backdropFilter: "blur(8px)",
+                boxShadow: `0 30px 80px ${alpha("#000000", 0.55)}`,
                 overflow: "hidden",
               }}
             >
@@ -214,13 +279,14 @@ function Hero() {
                   px: 2,
                   py: 1.5,
                   borderBottom: "1px solid",
-                  borderColor: "divider",
+                  borderColor: alpha("#ffffff", 0.08),
+                  bgcolor: alpha("#ffffff", 0.03),
                 }}
               >
                 {["#ff5f57", "#febc2e", "#28c840"].map((dot) => (
                   <Box
                     key={dot}
-                    sx={{ width: 11, height: 11, borderRadius: "50%", bgcolor: dot }}
+                    sx={{ width: 10, height: 10, borderRadius: "50%", bgcolor: dot }}
                   />
                 ))}
 
@@ -254,67 +320,15 @@ function Hero() {
                     component="div"
                     sx={{
                       pl: line.indent * 2.5,
-                      color: line.accent ? "primary.main" : "inherit",
+                      color: line.accent ? "primary.light" : "inherit",
                     }}
                   >
                     {line.text}
                   </Box>
                 ))}
               </Box>
-
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, 1fr)",
-                  borderTop: "1px solid",
-                  borderColor: "divider",
-                }}
-              >
-                {stats.map((stat, index) => (
-                  <Box
-                    key={stat.label}
-                    sx={{
-                      p: 2.5,
-                      borderRight: index % 2 === 0 ? "1px solid" : "none",
-                      borderBottom: index < 2 ? "1px solid" : "none",
-                      borderColor: "divider",
-                    }}
-                  >
-                    <Typography sx={{ fontWeight: 800, fontSize: 20 }}>
-                      {stat.value}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                      {stat.label}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
             </Box>
           </Reveal>
-        </Box>
-
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            justifyContent: "center",
-            mt: 8,
-          }}
-        >
-          <IconButton
-            href="#about"
-            aria-label="Scroll to about"
-            sx={{
-              color: "text.secondary",
-              animation: "heroBounce 2.2s ease-in-out infinite",
-              "@keyframes heroBounce": {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(8px)" },
-              },
-              "@media (prefers-reduced-motion: reduce)": { animation: "none" },
-            }}
-          >
-            <KeyboardArrowDownRoundedIcon />
-          </IconButton>
         </Box>
       </Container>
     </Box>

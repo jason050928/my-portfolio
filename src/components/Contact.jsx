@@ -13,6 +13,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { alpha, useTheme } from "@mui/material/styles";
 
+import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
@@ -141,12 +142,22 @@ function Contact() {
   };
 
   return (
-    <Box component="section" id="contact" sx={{ py: { xs: 9, md: 14 } }}>
+    <Box
+      component="section"
+      id="contact"
+      sx={{
+        py: { xs: 9, md: 14 },
+        bgcolor: "background.default",
+        color: "text.primary",
+        borderTop: "1px solid",
+        borderColor: "divider",
+      }}
+    >
       <Container maxWidth="lg">
         <SectionHeading
-          overline="Start a project"
-          title="Have a SaaS or AI project?"
-          subtitle="Tell me what you're building and I'll help you plan the fastest path to production. Send the details and I'll reply personally."
+          overline="Let's work together"
+          title="Have a project in mind?"
+          subtitle="Tell me what you're building, improving or trying to solve. I’m available for freelance and contract work across full-stack, backend, API and AI-powered products."
         />
 
         <Box
@@ -231,7 +242,28 @@ function Contact() {
                 );
               })}
 
-              <Stack direction="row" spacing={1.5} sx={{ pt: 0.5 }}>
+              <Stack
+                direction="row"
+                spacing={1.5}
+                sx={{ pt: 0.5, alignItems: "center", flexWrap: "wrap", rowGap: 1.5 }}
+              >
+                <Button
+                  href={profile.resume}
+                  download={profile.resumeFileName}
+                  variant="outlined"
+                  startIcon={<DownloadRoundedIcon />}
+                  sx={{
+                    borderColor: alpha("#ffffff", 0.25),
+                    color: "text.primary",
+                    "&:hover": {
+                      borderColor: "#ffffff",
+                      bgcolor: alpha("#ffffff", 0.06),
+                    },
+                  }}
+                >
+                  Download CV
+                </Button>
+
                 {profile.socials.map((social) => {
                   const Icon = socialIcons[social.icon];
 

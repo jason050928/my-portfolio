@@ -34,12 +34,17 @@ function Experience() {
       <Container maxWidth="md">
         <SectionHeading
           overline="Career"
-          title="Work experience"
-          subtitle="Fifteen years of shipping, mostly in teams that were not in the same room."
+          title="Professional experience"
+          subtitle="15+ years building, improving and supporting production software across international teams."
         />
 
-        <Box sx={{ position: "relative", pl: { xs: 4, sm: 5 } }}>
-          {/* The timeline rail. */}
+        <Box
+          sx={{
+            position: "relative",
+            pl: { xs: 4, sm: 5 },
+          }}
+        >
+          {/* Timeline rail */}
           <Box
             aria-hidden
             sx={{
@@ -49,10 +54,11 @@ function Experience() {
               bottom: 8,
               width: 2,
               borderRadius: 1,
-              background: `linear-gradient(180deg, ${theme.palette.primary.main}, ${alpha(
-                theme.palette.secondary.main,
-                0.15,
-              )})`,
+              background: `linear-gradient(
+                180deg,
+                ${theme.palette.primary.main},
+                ${alpha(theme.palette.secondary.main, 0.15)}
+              )`,
             }}
           />
 
@@ -60,8 +66,12 @@ function Experience() {
             <Reveal
               key={`${item.company}-${item.role}`}
               delay={index * 110}
-              sx={{ position: "relative", mb: index === experiences.length - 1 ? 0 : 3.5 }}
+              sx={{
+                position: "relative",
+                mb: index === experiences.length - 1 ? 0 : 3.5,
+              }}
             >
+              {/* Timeline dot */}
               <Box
                 aria-hidden
                 sx={{
@@ -74,20 +84,30 @@ function Experience() {
                   bgcolor: "primary.main",
                   border: "3px solid",
                   borderColor: "background.default",
-                  boxShadow: (t) => `0 0 0 4px ${alpha(t.palette.primary.main, 0.16)}`,
+                  boxShadow: (t) =>
+                    `0 0 0 4px ${alpha(t.palette.primary.main, 0.16)}`,
                 }}
               />
 
               <Card
                 sx={{
-                  transition: theme.transitions.create(["border-color", "transform"]),
+                  transition: theme.transitions.create([
+                    "border-color",
+                    "transform",
+                    "box-shadow",
+                  ]),
                   "&:hover": {
                     borderColor: alpha(theme.palette.primary.main, 0.5),
                     transform: "translateX(4px)",
+                    boxShadow: theme.custom.cardHoverShadow,
                   },
                 }}
               >
-                <CardContent sx={{ p: { xs: 3, sm: 3.5 } }}>
+                <CardContent
+                  sx={{
+                    p: { xs: 3, sm: 3.5 },
+                  }}
+                >
                   <Box
                     sx={{
                       display: "flex",
@@ -106,33 +126,57 @@ function Experience() {
                         fontSize: 11,
                         color: "primary.main",
                         bgcolor: alpha(theme.palette.primary.main, 0.12),
-                        "& .MuiChip-icon": { color: "primary.main" },
+                        "& .MuiChip-icon": {
+                          color: "primary.main",
+                        },
                       }}
                     />
                   </Box>
 
-                  <Typography variant="h4" sx={{ mb: 0.5 }}>
+                  <Typography
+                    variant="h4"
+                    sx={{ mb: 0.5 }}
+                  >
                     {item.role}
                   </Typography>
 
                   <Typography
-                    sx={{ color: "secondary.main", fontWeight: 600, mb: 1.75 }}
+                    sx={{
+                      color: "secondary.main",
+                      fontWeight: 600,
+                      mb: 1.75,
+                    }}
                   >
                     {item.company}
                   </Typography>
 
-                  <Typography variant="body2" sx={{ color: "text.secondary", mb: 2.5 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      mb: 2.5,
+                      lineHeight: 1.8,
+                    }}
+                  >
                     {item.description}
                   </Typography>
 
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: 1,
+                    }}
+                  >
                     {item.tags.map((tag) => (
                       <Chip
                         key={tag}
                         label={tag}
                         size="small"
                         variant="outlined"
-                        sx={{ color: "text.secondary" }}
+                        sx={{
+                          color: "text.secondary",
+                        }}
                       />
                     ))}
                   </Box>
@@ -143,13 +187,22 @@ function Experience() {
         </Box>
 
         <Reveal delay={120}>
-          <Box sx={{ textAlign: "center", mt: 6 }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              mt: 6,
+            }}
+          >
             <Button
               href={profile.resume}
+              download={profile.resumeFileName}
               variant="outlined"
               size="large"
               startIcon={<DownloadRoundedIcon />}
-              sx={{ borderColor: "divider", color: "text.primary" }}
+              sx={{
+                borderColor: "divider",
+                color: "text.primary",
+              }}
             >
               Download full CV
             </Button>

@@ -74,17 +74,13 @@ function Navbar() {
         elevation={0}
         color="transparent"
         sx={{
-          backgroundColor: scrolled
-            ? alpha(theme.palette.background.default, 0.8)
-            : "transparent",
-          backdropFilter: scrolled ? "blur(14px)" : "none",
+          // Always dark, like the hero it sits on; solidifies once scrolled.
+          backgroundColor: alpha(theme.palette.background.default, scrolled ? 0.92 : 0.6),
+          backdropFilter: "blur(14px)",
           borderBottom: "1px solid",
           borderColor: scrolled ? "divider" : "transparent",
-          transition: theme.transitions.create([
-            "background-color",
-            "border-color",
-            "backdrop-filter",
-          ]),
+          color: "text.primary",
+          transition: theme.transitions.create(["background-color", "border-color"]),
         }}
       >
         <Container maxWidth="lg">
@@ -107,11 +103,11 @@ function Navbar() {
                   width: 40,
                   height: 40,
                   borderRadius: 2,
-                  color: "#04121f",
+                  color: "primary.contrastText",
                   fontWeight: 800,
                   fontSize: 15,
                   letterSpacing: "-0.02em",
-                  background: theme.custom.accentGradient,
+                  bgcolor: "primary.main",
                 }}
               >
                 {profile.initials}
@@ -123,20 +119,14 @@ function Navbar() {
                 >
                   {profile.name}
                 </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: theme.custom.mono,
-                    fontSize: 11,
-                    color: "text.secondary",
-                  }}
-                >
+                <Typography sx={{ fontSize: 12, color: "text.secondary" }}>
                   {profile.role}
                 </Typography>
               </Box>
             </Box>
 
             {isDesktop ? (
-              <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
+              <Stack direction="row" spacing={0.25} sx={{ alignItems: "center", mr: 1 }}>
                 {navLinks.map((link) => {
                   const isActive = active === link.id;
 
@@ -146,12 +136,13 @@ function Navbar() {
                       href={`#${link.id}`}
                       size="small"
                       sx={{
-                        px: 1.75,
-                        color: isActive ? "primary.main" : "text.secondary",
-                        backgroundColor: isActive
-                          ? alpha(theme.palette.primary.main, 0.1)
-                          : "transparent",
-                        "&:hover": { color: "text.primary" },
+                        px: 1.5,
+                        fontWeight: 500,
+                        color: isActive ? "text.primary" : "text.secondary",
+                        "&:hover": {
+                          color: "text.primary",
+                          backgroundColor: alpha("#ffffff", 0.06),
+                        },
                       }}
                     >
                       {link.label}
