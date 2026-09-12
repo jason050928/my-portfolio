@@ -9,6 +9,7 @@ import { alpha, useTheme } from "@mui/material/styles";
 
 import ArrowOutwardRounded from "@mui/icons-material/ArrowOutwardRounded";
 import LanguageRounded from "@mui/icons-material/LanguageRounded";
+import TrendingUpRounded from "@mui/icons-material/TrendingUpRounded";
 
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
@@ -126,6 +127,34 @@ function ProjectPreview({ project }) {
   );
 }
 
+/** One labelled line of the case study: "Problem", "Built", "Result". */
+function CaseRow({ label, children, sx }) {
+  const theme = useTheme();
+
+  return (
+    <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start", ...sx }}>
+      <Typography
+        component="span"
+        sx={{
+          flexShrink: 0,
+          width: 58,
+          pt: "3px",
+          fontFamily: theme.custom.mono,
+          fontSize: 11,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "primary.main",
+        }}
+      >
+        {label}
+      </Typography>
+      <Typography variant="body2" sx={{ color: "text.secondary" }}>
+        {children}
+      </Typography>
+    </Box>
+  );
+}
+
 function Projects() {
   const theme = useTheme();
 
@@ -133,9 +162,9 @@ function Projects() {
     <Box component="section" id="projects" sx={{ py: { xs: 9, md: 14 } }}>
       <Container maxWidth="lg">
         <SectionHeading
-          overline="Selected work"
-          title="Projects I have built"
-          subtitle="Live products in real estate, e-commerce and AI — each card opens the site."
+          overline="Case studies"
+          title="Work that shipped"
+          subtitle="For each one: the problem, what I built, the stack, and what changed. Every card opens the live product."
         />
 
         <Box
@@ -228,12 +257,61 @@ function Projects() {
                       />
                     </Box>
 
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "text.secondary", mb: 3 }}
-                    >
-                      {project.description}
-                    </Typography>
+                    <Stack spacing={1.5} sx={{ mb: 2.5 }}>
+                      <CaseRow label="Problem">{project.problem}</CaseRow>
+                      <CaseRow label="Built">{project.built}</CaseRow>
+                      <CaseRow label="Result">{project.result}</CaseRow>
+                    </Stack>
+
+                    {project.metrics?.length ? (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 1.5,
+                          mb: 2.5,
+                        }}
+                      >
+                        {project.metrics.map((metric) => (
+                          <Box
+                            key={metric.label}
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 1.25,
+                              px: 1.75,
+                              py: 1.25,
+                              borderRadius: 2,
+                              border: "1px solid",
+                              borderColor: alpha(theme.palette.secondary.main, 0.35),
+                              bgcolor: alpha(theme.palette.secondary.main, 0.08),
+                            }}
+                          >
+                            <TrendingUpRounded
+                              sx={{ fontSize: 20, color: "secondary.main" }}
+                            />
+                            <Typography
+                              component="span"
+                              sx={{
+                                fontWeight: 800,
+                                fontSize: 20,
+                                lineHeight: 1,
+                                color: "secondary.main",
+                              }}
+                            >
+                              {metric.value}
+                            </Typography>
+                            <Typography
+                              component="span"
+                              variant="body2"
+                              sx={{ color: "text.primary", fontWeight: 600 }}
+                            >
+                              {metric.label}
+                            </Typography>
+                          </Box>
+                        ))}
+                      </Box>
+                    ) : null}
 
                     <Box
                       sx={{
@@ -243,7 +321,7 @@ function Projects() {
                         mt: "auto",
                       }}
                     >
-                      {project.tags.map((tag) => (
+                      {project.stack.map((tag) => (
                         <Chip
                           key={tag}
                           label={tag}

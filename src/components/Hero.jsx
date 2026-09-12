@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import { alpha, useTheme } from "@mui/material/styles";
 
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
@@ -24,7 +23,7 @@ const socialIcons = {
 const codeLines = [
   { indent: 0, text: "const engineer = {" },
   { indent: 1, text: 'name: "Jason Gundayao",', accent: true },
-  { indent: 1, text: 'focus: ["web apps", "APIs", "AI"],', accent: true },
+  { indent: 1, text: 'builds: ["SaaS", "AI features", "APIs"],', accent: true },
   { indent: 1, text: "years: 15," },
   { indent: 1, text: "remote: true," },
   { indent: 1, text: "shipsOnFriday: false," },
@@ -136,22 +135,21 @@ function Hero() {
             <Reveal delay={320}>
               <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mb: 4 }}>
                 <Button
-                  href="#projects"
+                  href="#contact"
                   variant="contained"
                   size="large"
                   endIcon={<ArrowForwardRoundedIcon />}
                 >
-                  View my work
+                  Start a project
                 </Button>
 
                 <Button
-                  href={profile.resume}
+                  href="#projects"
                   variant="outlined"
                   size="large"
-                  startIcon={<DownloadRoundedIcon />}
                   sx={{ borderColor: "divider", color: "text.primary" }}
                 >
-                  Download CV
+                  See case studies
                 </Button>
               </Stack>
             </Reveal>

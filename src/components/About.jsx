@@ -10,6 +10,7 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CloudQueueRoundedIcon from "@mui/icons-material/CloudQueueRounded";
 import CodeRoundedIcon from "@mui/icons-material/CodeRounded";
 import PsychologyRoundedIcon from "@mui/icons-material/PsychologyRounded";
+import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 
 import Reveal from "./Reveal";
@@ -20,6 +21,7 @@ const serviceIcons = {
   code: CodeRoundedIcon,
   storage: StorageRoundedIcon,
   psychology: PsychologyRoundedIcon,
+  rocket: RocketLaunchRoundedIcon,
   cloud: CloudQueueRoundedIcon,
 };
 
@@ -30,7 +32,7 @@ function About() {
     <Box component="section" id="about" sx={{ py: { xs: 9, md: 14 } }}>
       <Container maxWidth="lg">
         <SectionHeading
-          overline="A few words about me"
+          overline="About"
           title="Engineering that holds up in production"
           subtitle={profile.summary}
         />
@@ -115,6 +117,28 @@ function About() {
             </Box>
           </Reveal>
         </Box>
+
+        <Reveal>
+          <Box sx={{ mb: { xs: 4, md: 5 } }}>
+            <Typography
+              variant="overline"
+              sx={{ color: "primary.main", display: "block", mb: 1 }}
+            >
+              Services
+            </Typography>
+            <Typography variant="h3" sx={{ mb: 1.5 }}>
+              What you can hire me for
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ color: "text.secondary", maxWidth: 640 }}
+            >
+              Four things I do end to end — scoped, built, shipped and
+              supported — for SaaS teams that need a senior engineer, not a
+              handoff.
+            </Typography>
+          </Box>
+        </Reveal>
 
         <Box
           sx={{

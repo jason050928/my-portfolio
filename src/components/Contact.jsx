@@ -50,7 +50,7 @@ function validate(values) {
   }
 
   if (!values.message.trim()) {
-    errors.message = "A short message is enough to start";
+    errors.message = "A sentence on what you're building is enough to start";
   } else if (values.message.trim().length < 12) {
     errors.message = "Could you add a little more detail?";
   }
@@ -144,9 +144,9 @@ function Contact() {
     <Box component="section" id="contact" sx={{ py: { xs: 9, md: 14 } }}>
       <Container maxWidth="lg">
         <SectionHeading
-          overline="Get in touch"
-          title="Let's build something"
-          subtitle="Have a role, a project, or a system that needs untangling? Send the details and I'll reply personally."
+          overline="Start a project"
+          title="Have a SaaS or AI project?"
+          subtitle="Tell me what you're building and I'll help you plan the fastest path to production. Send the details and I'll reply personally."
         />
 
         <Box
@@ -299,7 +299,7 @@ function Contact() {
                 </Box>
 
                 <TextField
-                  label="Subject"
+                  label="Project or company"
                   value={values.subject}
                   onChange={handleChange("subject")}
                   fullWidth
@@ -307,7 +307,7 @@ function Contact() {
                 />
 
                 <TextField
-                  label="Message"
+                  label="What are you building?"
                   value={values.message}
                   onChange={handleChange("message")}
                   error={Boolean(errors.message)}
@@ -333,7 +333,7 @@ function Contact() {
                   }
                   sx={{ width: { xs: "100%", sm: "auto" } }}
                 >
-                  {sending ? "Sending…" : "Send message"}
+                  {sending ? "Sending…" : "Send project details"}
                 </Button>
               </CardContent>
             </Card>
