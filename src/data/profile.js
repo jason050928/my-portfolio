@@ -230,11 +230,23 @@ export const experiences = [
   },
 ];
 
+// `location`, `description` and `tags` are optional — leave them out and the
+// card just gets shorter.
+export const education = [
+  {
+    degree: "Bachelor's Degree in Computer Science",
+    school: "National University of Singapore",
+    period: "Aug 2007 — May 2011",
+    location: "Singapore",
+  },
+];
+
 export const navLinks = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];
