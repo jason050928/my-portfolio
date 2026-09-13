@@ -13,6 +13,7 @@ import TrendingUpRounded from "@mui/icons-material/TrendingUpRounded";
 
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import { asset } from "../asset";
 import { projects } from "../data/profile";
 
 function hostOf(url) {
@@ -26,7 +27,7 @@ function hostOf(url) {
 /** Screenshot when we have one, otherwise a branded placeholder. */
 function ProjectPreview({ project }) {
   const theme = useTheme();
-  const host = hostOf(project.url);
+  const host = project.url ? hostOf(project.url) : project.title.toLowerCase();
 
   return (
     <Box
@@ -42,7 +43,7 @@ function ProjectPreview({ project }) {
       {project.image ? (
         <Box
           component="img"
-          src={project.image}
+          src={asset(project.image)}
           alt={`${project.title} homepage`}
           loading="lazy"
           sx={{
@@ -164,7 +165,7 @@ function Projects() {
         <SectionHeading
           overline="Case studies"
           title="Work that shipped"
-          subtitle="For each one: the problem, what I built, the stack, and what changed. Every card opens the live product."
+          subtitle="For each one: the problem, what I built, the stack, and what changed. Cards with an arrow open the live product."
         />
 
         <Box
@@ -180,13 +181,17 @@ function Projects() {
         >
           {projects.map((project, index) => {
             return (
-              <Reveal key={project.url} delay={index * 80} sx={{ height: "100%" }}>
+              <Reveal key={project.title} delay={index * 80} sx={{ height: "100%" }}>
                 <Card
                   className="project-card"
-                  component="a"
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  {...(project.url
+                    ? {
+                        component: "a",
+                        href: project.url,
+                        target: "_blank",
+                        rel: "noreferrer noopener",
+                      }
+                    : {})}
                   sx={{
                     height: "100%",
                     display: "flex",
@@ -218,6 +223,7 @@ function Projects() {
                     <Box
                       sx={{
                         display: "flex",
+                        flexWrap: "wrap",
                         alignItems: "center",
                         gap: 1.5,
                         mb: 1.5,
@@ -227,6 +233,7 @@ function Projects() {
                         {project.title}
                       </Typography>
 
+                      {project.url ? (
                       <ArrowOutwardRounded
                         sx={{
                           fontSize: 18,
@@ -237,6 +244,7 @@ function Projects() {
                           },
                         }}
                       />
+                      ) : null}
 
                       <Chip
                         label={project.context}
@@ -250,6 +258,15 @@ function Projects() {
                         }}
                       />
                     </Box>
+
+                    {project.role ? (
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "primary.main", fontWeight: 600, mt: -0.5, mb: 2 }}
+                      >
+                        {project.role}
+                      </Typography>
+                    ) : null}
 
                     <Stack spacing={1.5} sx={{ mb: 2.5 }}>
                       <CaseRow label="Problem">{project.problem}</CaseRow>

@@ -12,6 +12,7 @@ import WorkOutlineRoundedIcon from "@mui/icons-material/WorkOutlineRounded";
 
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import { asset } from "../asset";
 import { experiences, profile } from "../data/profile";
 
 function Experience() {
@@ -148,6 +149,14 @@ function Experience() {
                     }}
                   >
                     {item.company}
+                    {item.location ? (
+                      <Box
+                        component="span"
+                        sx={{ color: "text.secondary", fontWeight: 400, ml: 1 }}
+                      >
+                        · {item.location}
+                      </Box>
+                    ) : null}
                   </Typography>
 
                   <Typography
@@ -194,7 +203,7 @@ function Experience() {
             }}
           >
             <Button
-              href={profile.resume}
+              href={asset(profile.resume)}
               download={profile.resumeFileName}
               variant="outlined"
               size="large"

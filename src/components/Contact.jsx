@@ -17,12 +17,14 @@ import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import PlaceRoundedIcon from "@mui/icons-material/PlaceRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import ScheduleRoundedIcon from "@mui/icons-material/ScheduleRounded";
 
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import { asset } from "../asset";
 import { profile } from "../data/profile";
 
 const socialIcons = {
@@ -74,6 +76,16 @@ function Contact() {
       value: profile.email,
       href: `mailto:${profile.email}`,
     },
+    ...(profile.phone
+      ? [
+          {
+            icon: PhoneRoundedIcon,
+            label: "Phone",
+            value: profile.phone,
+            href: `tel:${profile.phone.replace(/\s+/g, "")}`,
+          },
+        ]
+      : []),
     { icon: PlaceRoundedIcon, label: "Location", value: profile.location },
     { icon: ScheduleRoundedIcon, label: "Availability", value: profile.availability },
   ];
@@ -248,7 +260,7 @@ function Contact() {
                 sx={{ pt: 0.5, alignItems: "center", flexWrap: "wrap", rowGap: 1.5 }}
               >
                 <Button
-                  href={profile.resume}
+                  href={asset(profile.resume)}
                   download={profile.resumeFileName}
                   variant="outlined"
                   startIcon={<DownloadRoundedIcon />}

@@ -11,10 +11,10 @@ export const profile = {
   tagline:
     "I help startups and businesses turn ideas into production-ready web applications, backend systems, API integrations and practical AI features.",
   summary:
-    "Fifteen years across front-end, backend and cloud, building products for logistics, e-commerce, marketplaces and AI platforms — with a bias for things that keep working after launch.",
-  // TODO: replace with the address you actually want on a public page.
-  location: "Angeles City, Philippines — remote worldwide",
+    "Fifteen years building and supporting production applications across frontend, backend, APIs, databases and cloud — for B2B SaaS, e-commerce, real estate, digital content and enterprise data systems.",
+  location: "Angeles City, Pampanga, Philippines — remote worldwide",
   email: "seniordev02002@gmail.com",
+  phone: "+63 955 257 9193",
   availability: "Available for freelance & contract projects",
   // Optional photo behind the hero copy (put it in public/images). Leave
   // empty and the hero uses a dark gradient instead.
@@ -43,10 +43,10 @@ export const credentials = [
 ];
 
 export const highlights = [
-  "Shipping AI features that behave predictably, not just in the demo",
-  "Designing APIs and data models that hold up under real load",
-  "Building React and TypeScript front-ends the next engineer can maintain",
-  "Working asynchronously with distributed product teams",
+  "API design and third-party integrations that hold up under real load",
+  "Performance optimization and production troubleshooting across every layer",
+  "React, Next.js and TypeScript front-ends the next engineer can maintain",
+  "CI/CD, code review and technical leadership for distributed remote teams",
 ];
 
 // Technical expertise, as four capabilities rather than a wall of logos.
@@ -75,26 +75,14 @@ export const capabilities = [
     title: "Backend & API Engineering",
     description:
       "Design scalable services, APIs and integrations with clear data flows, validation and maintainable architecture.",
-    tags: [
-      "Node.js",
-      "Python",
-      "Django",
-      "REST APIs",
-      "GraphQL",
-    ],
+    tags: ["Node.js", "Python", "Django", "PHP", "Laravel", "REST APIs", "GraphQL"],
   },
   {
     icon: "data",
     title: "Data & Cloud",
     description:
       "Work with relational and document databases, cloud infrastructure and deployment pipelines for reliable production systems.",
-    tags: [
-      "PostgreSQL",
-      "MySQL",
-      "MongoDB",
-      "AWS",
-      "CI/CD",
-    ],
+    tags: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "AWS", "Docker", "Terraform", "CI/CD"],
   },
   {
     icon: "leadership",
@@ -135,128 +123,131 @@ export const services = [
 ];
 
 // Each project is a mini case study: problem → what you built → stack →
-// result. Keep numbers out of these until a case study can show exactly
-// how they were measured.
+// result, taken from the "Selected Projects" section of the CV so the two
+// always agree. Keep numbers out until a case study can show exactly how
+// they were measured.
 //
 // `image` is a homepage screenshot in public/images/projects. Leave it empty
 // and the card falls back to a branded placeholder — see README for how to
-// capture new ones.
-//
-// TODO: these case studies are DRAFTS written from the product descriptions
-// and your CV. Check each "problem" and "built" line says what you actually
-// did.
+// capture new ones. `url` is optional: without one the card is not a link.
 export const projects = [
   {
-    title: "Averi",
-    context: "AI marketing platform",
-    url: "https://www.averi.ai/",
-    image: "/images/projects/averi.jpg",
-
+    title: "HELLOprint",
+    context: "B2B e-commerce printing · 2025",
+    role: "Senior Full-Stack Engineer",
+    url: "https://www.helloprint.com/",
+    image: "/images/projects/helloprint.jpg",
     problem:
-      "Marketing teams need a more consistent way to create, refine and manage AI-assisted content across campaigns without relying on fragmented tools and workflows.",
-
+      "A high-traffic B2B printing platform where customers browse, customise and order print products, with catalogues, users, orders and payments all needing fast, reliable APIs.",
     built:
-      "Contributed as a Senior Software Engineer to the maintenance and continued development of the platform, working across React and TypeScript on the application layer and Python-backed functionality.",
-
-    stack: [
-      "React",
-      "TypeScript",
-      "Python",
-    ],
-
+      "Customer-facing browsing, customisation and ordering flows in React and Next.js, plus Node.js/Express REST APIs for catalogues, users, orders and payments, integrated with payment and shipping services.",
+    stack: ["React", "Next.js", "Node.js", "Express", "Redis", "AWS", "Docker", "Terraform"],
     result:
-      "Helped maintain and evolve a production AI marketing platform used to support content creation and campaign workflows.",
+      "Faster order processing under load through API and database optimisation and Redis caching, deployed and operated on AWS with Docker, Terraform and CI/CD.",
   },
   {
-    title: "Rentberry",
-    context: "Rental platform",
-    url: "https://rentberry.com/",
-    image: "/images/projects/rentberry.jpg",
-
+    title: "Connected Railway",
+    context: "B2B multi-tenant SaaS · 2024",
+    role: "Full-Stack Engineer",
+    url: "https://connected-railway.com/",
+    image: "/images/projects/connected-railway.jpg",
     problem:
-      "Rentberry supports tenants, landlords and property managers through property search, applications, rental offers and ongoing rental workflows in a single platform.",
-
+      "A multi-tenant platform connecting railway sub-contractors, resourcing companies and training providers — job discovery, applications and onboarding that had to stay fast on data-heavy endpoints.",
     built:
-      "Contributed as a Senior Software Engineer to the maintenance and continued development of the platform, working with React and TypeScript on the frontend and Python and Django on backend functionality.",
-
-    stack: [
-      "React",
-      "TypeScript",
-      "Python",
-      "Django",
-    ],
-
+      "React/Next.js workflows for job discovery, applications, onboarding, role-based routing, tenant-aware UI, search and filtering, and Laravel REST/GraphQL API work on the backend.",
+    stack: ["React", "Next.js", "PHP", "Laravel", "GraphQL", "AWS", "Docker"],
     result:
-      "Helped maintain and improve a production rental platform supporting digital workflows for tenants, landlords and property managers.",
+      "Data-heavy endpoints made responsive with cursor pagination, query refactoring and indexing, on a tenant-aware UI that routes each role to the right workflow.",
   },
   {
-    title: "Fenton",
-    context: "Bespoke jewellery",
-    url: "https://www.fentonand.co/",
-    image: "/images/projects/fentonandco.jpg",
-
+    title: "Alveo Land",
+    context: "Real estate platform · 2023",
+    role: "Backend Engineer",
+    url: "https://www.alveoland.com.ph/",
+    image: "/images/projects/alveoland.jpg",
     problem:
-      "Fenton needed a customer-facing e-commerce experience where customers could explore fine jewellery, customize selections and complete purchases through a clear online journey.",
-
+      "A media-heavy property portal for one of the Philippines' largest developers, with property data, content configuration and lead capture all running through the backend.",
     built:
-      "Contributed as a Senior Software Engineer to the ground-up development of the storefront, working with Shopify, Liquid, JavaScript, HTML and CSS to build and refine the customer experience.",
-
-    stack: [
-      "Shopify",
-      "Liquid",
-      "JavaScript",
-      "HTML",
-      "CSS",
-    ],
-
+      "PHP/Symfony backend functionality for property data, content configuration and lead capture, including MySQL schemas, queries, validation and error handling.",
+    stack: ["PHP", "Symfony", "MySQL", "WordPress", "Docker"],
     result:
-      "Helped deliver a production e-commerce experience that supports product discovery, customization and online purchasing for Fenton customers.",
+      "Media-heavy pages that load leaner, through data-hydration optimisation, caching and slimmer API responses.",
+  },
+  {
+    title: "Splurge.art",
+    context: "Digital art platform · 2023",
+    role: "Senior Full-Stack Engineer, AI focused",
+    url: "",
+    image: "",
+    problem:
+      "A web and mobile platform for discovering high-resolution digital artwork, where large media had to render smoothly and artwork metadata had to be ready for AI-assisted enrichment.",
+    built:
+      "Web and mobile interfaces in React, Next.js and Flutter, plus backend APIs and PostgreSQL data models for artwork ingestion, metadata and discovery.",
+    stack: ["React", "Next.js", "Flutter", "TypeScript", "Node.js", "Python", "PostgreSQL"],
+    result:
+      "High-resolution media that performs, via progressive loading, caching and viewport rendering — on a data model designed for future AI-assisted enrichment.",
+  },
+  {
+    title: "Smart Communications",
+    context: "Enterprise telecom data platform · 2021",
+    role: "Senior Full-Stack / Data Engineer",
+    url: "https://smart.com.ph/",
+    image: "",
+    problem:
+      "Operational reporting for a national telecom, where recurring reports depended on slow queries over large datasets and manual data delivery.",
+    built:
+      "React dashboards, Python/Node.js APIs, SQL queries, ETL workflows and data models for operational reporting.",
+    stack: ["Python", "SQL", "React", "Node.js", "ETL"],
+    result:
+      "Faster reporting through SQL optimisation, indexing, aggregation tables and scheduled preprocessing, with recurring data delivery automated.",
   },
 ];
 
+// Straight from the CV. `location` shows next to the company.
 export const experiences = [
   {
     role: "Senior Software Engineer",
     company: "Sayeef Digital Agency UK",
+    location: "United Kingdom · Remote",
     period: "Aug 2023 — Present",
     description:
-      "Design and build full-stack web applications using React and Node.js, develop scalable APIs backed by PostgreSQL, and support AWS-based CI/CD delivery. Also mentor developers, contribute to technical decisions and collaborate with cross-functional teams on production features.",
-    tags: ["React", "Node.js", "PostgreSQL", "AWS", "CI/CD"],
+      "Build and maintain production applications across frontend, backend, API and database layers in JavaScript, TypeScript, React, Node.js, Python and PHP. Develop customer-facing interfaces integrated with backend services, REST APIs, databases and third-party systems; diagnose production and performance issues across every layer and ship tested fixes; contribute to technical decisions, code review, testing, deployment and production troubleshooting with distributed teams.",
+    tags: ["React", "TypeScript", "Node.js", "Python", "PHP", "REST APIs"],
   },
-
   {
     role: "Senior Software Engineer",
     company: "ScienceSoft",
+    location: "United States · Remote",
     period: "May 2020 — Jul 2023",
     description:
-      "Developed and improved backend services and microservices using Node.js and MongoDB, optimized REST APIs and integrated third-party services. Contributed through code reviews, performance improvements and Agile delivery across distributed teams.",
-    tags: ["Node.js", "MongoDB", "REST APIs", "Microservices"],
+      "Developed production full-stack applications with React, Next.js, TypeScript, Node.js, Python, relational and document databases and web APIs. Built and integrated backend services, REST APIs, third-party integrations, database schemas, queries and indexing for customer-facing workflows, resolved production issues across the stack and supported CI/CD and releases.",
+    tags: ["React", "Next.js", "TypeScript", "Node.js", "Python", "CI/CD"],
   },
-
   {
     role: "Technical Lead",
     company: "Digital Thing",
+    location: "Australia · Remote",
     period: "Jul 2017 — Apr 2020",
     description:
-      "Led technical planning and software delivery while remaining hands-on with React applications and AWS-based systems. Guided developers, reviewed technical decisions, improved application performance and worked with stakeholders to turn business requirements into software solutions.",
-    tags: ["React", "AWS", "Technical Leadership", "Performance"],
+      "Led technical delivery of full-stack web applications while staying hands-on with architecture, implementation, testing, debugging and production support. Designed APIs, database schemas, application workflows and integrations on AWS-based production systems; reviewed code and technical designs, mentored engineers and turned stakeholder requirements into production releases.",
+    tags: ["Architecture", "APIs", "AWS", "Code review", "Mentoring"],
   },
-
   {
     role: "Full Stack Engineer",
     company: "Thoughtworks",
+    location: "Singapore · Onsite",
     period: "Mar 2013 — Jun 2017",
     description:
-      "Built full-stack application features using JavaScript and Python, contributed to legacy-system modernization and worked with PostgreSQL data models. Supported Agile delivery, testing and production troubleshooting across collaborative engineering teams.",
-    tags: ["JavaScript", "Python", "PostgreSQL", "Agile"],
+      "Built and maintained full-stack applications using JavaScript, Python, relational databases and web APIs. Implemented frontend features, backend logic, database queries, validation and integrations, and contributed to application modernisation.",
+    tags: ["JavaScript", "Python", "SQL", "Web APIs"],
   },
-
   {
-    role: "Software Engineer Internship",
+    role: "Software Engineer Intern",
     company: "IBM",
+    location: "United States · Remote",
     period: "Jul 2011 — Feb 2013",
     description:
-      "Built foundational software engineering experience through application development, REST API work, testing and debugging using JavaScript and Python, while learning Git-based collaboration and professional engineering practices.",
+      "Supported development, testing, debugging, documentation and REST API work using JavaScript, Python and Git.",
     tags: ["JavaScript", "Python", "REST APIs", "Git"],
   },
 ];

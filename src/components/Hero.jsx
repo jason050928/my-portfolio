@@ -12,6 +12,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 
 import Reveal from "./Reveal";
+import { asset } from "../asset";
 import { credentials, profile } from "../data/profile";
 
 const socialIcons = {
@@ -104,7 +105,7 @@ function Hero() {
         color: "text.primary",
       }}
     >
-      <Backdrop image={profile.heroImage} />
+      <Backdrop image={asset(profile.heroImage)} />
 
       <Container maxWidth="lg" sx={{ position: "relative" }}>
         <Box

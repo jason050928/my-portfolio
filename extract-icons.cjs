@@ -15,6 +15,11 @@ const wanted = {
   PostgreSQL: ["siPostgresql"],
   MySQL: ["siMysql"],
   MongoDB: ["siMongodb"],
+  PHP: ["siPhp"],
+  Laravel: ["siLaravel"],
+  Redis: ["siRedis"],
+  Docker: ["siDocker"],
+  Terraform: ["siTerraform"],
 };
 
 // Some official colours are unusable on a dark surface, or belong to a
